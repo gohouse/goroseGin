@@ -1,8 +1,8 @@
 package main
 
 import (
-	"github.com/gohouse/gupiao/bootstrap"
-	"github.com/gohouse/gupiao/routes"
+	"github.com/gohouse/goroseGin/bootstrap"
+	"github.com/gohouse/goroseGin/routes"
 )
 
 func main() {
