@@ -2,7 +2,7 @@ package controller
 
 import (
 	"github.com/gohouse/gorose"
-	"github.com/gohouse/gupiao/bootstrap"
+	"github.com/gohouse/goroseGin/bootstrap"
 )
 
 func M(table string) *gorose.Session {

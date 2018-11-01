@@ -2,7 +2,7 @@ package bootstrap
 
 import (
 	"github.com/gohouse/gorose"
-	"github.com/gohouse/gupiao/config"
+	"github.com/gohouse/goroseGin/config"
 	_ "github.com/go-sql-driver/mysql"
 )
 

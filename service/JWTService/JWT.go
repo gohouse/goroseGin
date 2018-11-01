@@ -4,7 +4,7 @@ import (
 	jwt_lib "github.com/dgrijalva/jwt-go"
 	"github.com/gin-gonic/gin"
 	"github.com/dgrijalva/jwt-go/request"
-	"github.com/gohouse/gupiao/config"
+	"github.com/gohouse/goroseGin/config"
 	"time"
 )
 

@@ -2,7 +2,7 @@ package routes
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/gohouse/gupiao/bootstrap"
+	"github.com/gohouse/goroseGin/bootstrap"
 	"net/http"
 	"time"
 )

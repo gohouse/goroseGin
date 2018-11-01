@@ -3,9 +3,9 @@ package controller
 import (
 	"github.com/gin-gonic/gin"
 	"github.com/gohouse/gorose/utils"
-	"github.com/gohouse/gupiao/helper"
-	"github.com/gohouse/gupiao/model"
-	"github.com/gohouse/gupiao/service/JWTService"
+	"github.com/gohouse/goroseGin/helper"
+	"github.com/gohouse/goroseGin/model"
+	"github.com/gohouse/goroseGin/service/JWTService"
 	"net/http"
 )
 
