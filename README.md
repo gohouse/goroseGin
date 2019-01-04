@@ -48,3 +48,9 @@ http://localhost:8005/api
     └── JWTService
         └── JWT.go
 ```
+
+## 接口截图
+```sh
+http://localhost:8005/api
+```
+![api](https://github.com/gohouse/goroseGin/blob/master/doc/gorose_gin.png?raw=true)
