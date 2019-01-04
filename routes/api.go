@@ -3,6 +3,7 @@ package routes
 import (
 	"github.com/gin-gonic/gin"
 	"github.com/gohouse/goroseGin/bootstrap"
+	"github.com/gohouse/goroseGin/controller"
 	"net/http"
 	"time"
 )
@@ -18,6 +19,13 @@ func Run() {
 		//}()
 		c.String(http.StatusOK, "api works "+time.Now().Format(format))
 	})
+
+	router.GET("/api", func(c *gin.Context) {
+		r := controller.Demo()
+		c.JSON(r.Code, r)
+	})
+
+	router.GET("/test", controller.Demo2)
 
 
 	// 加载admin路由

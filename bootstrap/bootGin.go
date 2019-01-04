@@ -22,7 +22,7 @@ func BootGin() func(*Booter) {
 		// 配置静态目录
 		srv.Router.Static("static", "/var/tmp/static")
 
-		// 调用允许 OPTIONS 方法访问中间件
+		// 调用允许 OPTIONS 方法访问和跨域 中间件
 		srv.Router.Use(cors.New(config)).Use(middleWare.Cors())
 	}
 }
