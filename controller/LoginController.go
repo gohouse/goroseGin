@@ -16,7 +16,7 @@ func Login(c *gin.Context) {
 	if len(username) > 0 {
 		// 验证是否正确
 		var user model.User
-		_, err := NewConnectionInstance().Table(&user).Where("mobile", username).
+		_, err := model.NewDBConnection().Table(&user).Where("mobile", username).
 			Where("password", helper.Md5(password)).First()
 		if err != nil || user.Id == 0 {
 			c.JSON(http.StatusOK, utils.FailReturn("帐号或密码错误", 401))
