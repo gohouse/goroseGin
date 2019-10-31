@@ -38,6 +38,7 @@
             background-image: none;
             border: 1px solid transparent;
             border-radius: 4px;
+            text-decoration: none;
         }
         .btn-success {
             color: #fff;
@@ -138,6 +139,9 @@
         age.val(ageParam)
     }
     function UserDelete(uidParam) {
+        if (confirm("确定删除???")==false) {
+            return false
+        }
         var url = "http://localhost:8080/UserDelete"
         $.get(url,{uid:uidParam},function (e) {
             if (e.code!=200) {
