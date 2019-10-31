@@ -2,14 +2,13 @@ package routes
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/gohouse/goroseGin/bootstrap"
 	"github.com/gohouse/goroseGin/controller"
 	"net/http"
 	"time"
 )
 
-func Run() {
-	var router gin.IRouter = bootstrap.GetBooterInstance().Router
+func Run(router *gin.Engine) {
+	//var router gin.IRouter = bootstrap.GetBooterInstance().Router
 
 	router.GET("/", func(c *gin.Context) {
 		format := "2006-01-02 15:04:05"

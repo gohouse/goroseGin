@@ -17,7 +17,7 @@ func main() {
 	defer booter.Connection.Close()
 
 	// 加载路由
-	routes.Run()
+	routes.Run(booter.Router)
 
 	//监听端口
 	booter.Router.Run(":8005")
