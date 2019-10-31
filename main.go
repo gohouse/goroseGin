@@ -95,8 +95,8 @@ func UserEdit(c *gin.Context) {
 
 // UserList 获取用户列表
 func UserList(c *gin.Context) {
-	// 默认查询10条数据
-	userList, err := DB().Table("users").Order("uid desc").Limit(50).Get()
+	// 默认查询50条数据
+	userList, err := DB().Table("users").OrderBy("uid desc").Limit(50).Get()
 	if err != nil {
 		c.JSON(http.StatusOK, FailReturn(err.Error()))
 		return
@@ -144,18 +144,21 @@ func BootGin() {
 	// logger and recovery (crash-free) middleware
 	router := gin.Default()
 
-	router.GET("/", func(c *gin.Context) {
-		c.Header("Content-Type", "text/html; charset=utf-8")
-		c.String(http.StatusOK,
-			`<br><br><center>
-<h1>欢迎来到golang入门用户管理api服务系统</h1>
-</center>`)
-	})
+//	router.GET("/", func(c *gin.Context) {
+//		c.Header("Content-Type", "text/html; charset=utf-8")
+//		c.String(http.StatusOK,
+//			`<br><br><center>
+//<h1>欢迎来到golang入门用户管理api服务系统</h1>
+//</center>`)
+//	})
 	router.Use(Cors())
 	router.GET("/UserAdd", UserAdd)
 	router.GET("/UserList", UserList)
 	router.GET("/UserEdit", UserEdit)
 	router.GET("/UserDelete", UserDelete)
+
+	// 静态文件服务
+	router.Static("/html","./")
 
 	// By default it serves on :8080 unless a
 	// PORT environment variable was defined.
