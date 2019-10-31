@@ -18,13 +18,55 @@
         th{
             width: 150px;
         }
+        .btn {
+            display: inline-block;
+            padding: 6px 12px;
+            margin-bottom: 0;
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 1.42857143;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: middle;
+            -ms-touch-action: manipulation;
+            touch-action: manipulation;
+            cursor: pointer;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            background-image: none;
+            border: 1px solid transparent;
+            border-radius: 4px;
+        }
+        .btn-success {
+            color: #fff;
+            background-color: #5cb85c;
+            border-color: #4cae4c;
+        }
+        .btn-primary {
+            color: #fff;
+            background-color: #337ab7;
+            border-color: #2e6da4;
+        }
+        .btn-danger {
+            color: #fff;
+            background-color: #d9534f;
+            border-color: #d43f3a;
+        }
+        .btn-sm {
+            padding: 5px 10px;
+            font-size: 12px;
+            line-height: 1.5;
+            border-radius: 3px;
+        }
     </style>
 </head>
 <body>
 <center><h1>欢迎来到golang入门用户管理api服务系统</h1></center>
 <hr>
 <div id="user-box">
-    <button onclick="UserAdd()">新增</button>
+    <button onclick="UserAdd()" class="btn btn-primary btn-sm">新增</button>
     <table>
         <tr>
             <th>uid</th>
@@ -97,9 +139,12 @@
     }
     function UserDelete(uidParam) {
         var url = "http://localhost:8080/UserDelete"
-        $.get(url,{uid,uidParam},function (e) {
-            console.log(e);
-            dialog.hide()
+        $.get(url,{uid:uidParam},function (e) {
+            if (e.code!=200) {
+                alert("删除失败")
+            }
+            // dialog.hide()
+            window.location.reload()
         })
     }
     function dialogInit() {
@@ -118,8 +163,8 @@
                             "            <td>"+data.uid+"</td>\n" +
                             "            <td>"+data.username+"</td>\n" +
                             "            <td>"+data.age+"</td>\n" +
-                            "            <td><a href='javascript:;' onclick='UserEdit("+data.uid+",\""+data.username+"\","+data.age+")'>编辑</a> | " +
-                            "<a href='javascript:;' onclick='UserDelete("+data.uid+")'>删除</a> </td>" +
+                            "            <td><a href='javascript:;' class='btn btn-primary btn-sm' onclick='UserEdit("+data.uid+",\""+data.username+"\","+data.age+")'>编辑</a> | " +
+                            "<a href='javascript:;' class='btn btn-danger btn-sm' onclick='UserDelete("+data.uid+")'>删除</a> </td>" +
                             "        </tr>")
                     }
                 }
