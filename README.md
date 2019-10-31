@@ -18,4 +18,5 @@ go mod tidy
 go run main.go
 ```
 
-2.打开前端页面`index.html`,就可以完成用户的增删改查操作了
+2.打开前端页面`index.html`,就可以完成用户的增删改查操作了,效果图  
+![image.png](https://i.loli.net/2019/10/31/hYF1ENa5WldGksT.png)
