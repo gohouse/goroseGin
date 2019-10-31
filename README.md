@@ -1,5 +1,5 @@
 # 半小时快速入门golang完成简单的web用户管理(示例代码)
-博客教程页面: 
+博客教程页面: https://segmentfault.com/a/1190000020871866
 
 ## 说明
 本实例快速实现一个用户的增删改查, 采用前后端分离模式, 后端采用`gorose orm` + `gin`框架完成api的开发, 前端使用`原生html+jquery+ajax`交互数据. 
@@ -10,6 +10,7 @@ git clone https://github.com/gohouse/goroseGin.git
 cd goroseGin
 go mod tidy
 ```
+> 注意: 确保系统已经安装了golang运行环境和vgo,才能正常执行
 
 ## 运行
 1.运行服务端
