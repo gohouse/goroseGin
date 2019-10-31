@@ -1,56 +1,20 @@
-# goroseGin
-gorose + gin demo
+# 半小时快速入门golang完成简单的web用户管理(示例代码)
+博客教程页面: 
+
+## 说明
+本实例快速实现一个用户的增删改查, 采用前后端分离模式, 后端采用`gorose orm` + `gin`框架完成api的开发, 前端使用`原生html+jquery+ajax`交互数据. 
+
+## 安装
+```shell script
+git clone https://github.com/gohouse/goroseGin.git
+cd goroseGin
+go mod tidy
+```
 
 ## 运行
-1. 更改数据库配置文件 `path/to/goroseGin/config/databse.go`
-
-2. 启动服务
-```go
-cd path/to/goroseGin
+1.运行服务端
+```shell script
 go run main.go
 ```
 
-3. 访问测试 
-```go
-http://localhost:8005
-http://localhost:8005/test
-http://localhost:8005/api
-```
-
-## 目录说明
-```sh
-.
-├── README.md
-├── bootstrap               // 数据库框架驱动目录(gorose,gin驱动)
-│   ├── bootDatabase.go
-│   ├── bootGin.go
-│   └── booter.go
-├── config                  // 配置目录
-│   ├── config.go
-│   ├── database.go
-│   ├── jwt.go
-│   └── statusCode.go
-├── controller              // 控制器controller目录
-│   ├── BaseController.go
-│   └── LoginController.go
-├── doc
-├── helper                  // 工具函数目录
-│   └── helpers.go
-├── main.go                 // 入口文件
-├── middleWare              // 中间件
-│   └── ginCors.go
-├── model                   // 数据库model
-│   └── model.go
-├── routes                  // 路由
-│   ├── admin.go
-│   └── api.go
-└── service                 // 公共服务service
-    └── JWTService
-        └── JWT.go
-```
-
-## 接口截图
-```sh
-http://localhost:8005/api
-```
-![api](https://github.com/gohouse/goroseGin/blob/master/doc/gorose_gin.png?raw=true)
+2.打开前端页面`index.html`,就可以完成用户的增删改查操作了

@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>golang用户管理示例</title>
+    <style>
+        #user-box{
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        table{
+            text-align: center;
+            border: 1px solid #000;
+        }
+        th{
+            width: 150px;
+        }
+    </style>
+</head>
+<body>
+<center><h1>欢迎来到golang入门用户管理api服务系统</h1></center>
+<hr>
+<div id="user-box">
+    <button onclick="UserAdd()">新增</button>
+    <table>
+        <tr>
+            <th>uid</th>
+            <th>用户名</th>
+            <th>年龄</th>
+            <th>操作</th>
+        </tr>
+    </table>
+</div>
+
+<div id="modal">
+    <!-- 模态框 -->
+    <dialog>
+        <p>操作</p>
+        <hr>
+        <input type="hidden" id="uid">
+        <p>
+            用户名: <br>
+            <input type="text" id="username">
+        </p>
+
+        <p>
+            年&nbsp;&nbsp;龄: <br>
+            <input type="text" id="age">
+        </p>
+
+        <button onclick="UserSubmit()">提交</button>
+        <button onclick="dialog.hide()">关闭</button>
+    </dialog>
+</div>
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<script>
+    var dialog = $("dialog");
+    var uid = $("#uid");
+    var username = $("#username");
+    var age = $("#age");
+
+    // 初始化数据
+    UserList();
+
+    function UserSubmit() {
+        var url = "http://localhost:8080/UserEdit";
+        var uidVal = uid.val();
+        if (uidVal=="") {
+            url = "http://localhost:8080/UserAdd"
+        }
+        $.get(url,{
+            uid:uid.val(),
+            username:username.val(),
+            age:age.val()
+        },function (e) {
+            console.log(e);
+            if (e.code!=200) {
+                alert("失败")
+            }
+            // dialog.hide()
+            window.location.reload()
+        })
+    }
+    function UserAdd() {
+        dialogInit()
+        dialog.show()
+    }
+    function UserEdit(uidParam,usernameParam,ageParam) {
+        dialogInit()
+        dialog.show()
+        uid.val(uidParam)
+        username.val(usernameParam)
+        age.val(ageParam)
+    }
+    function UserDelete(uidParam) {
+        var url = "http://localhost:8080/UserDelete"
+        $.get(url,{uid,uidParam},function (e) {
+            console.log(e);
+            dialog.hide()
+        })
+    }
+    function dialogInit() {
+        uid.val("")
+        username.val("")
+        age.val("")
+    }
+    function UserList() {
+        var url = "http://localhost:8080/UserList"
+        $.get(url,{},function (e) {
+            if (e.code==200) {
+                if (e.data.length>0) {
+                    for(var i in e.data) {
+                        var data = e.data[i]
+                        $("table").append("<tr>\n" +
+                            "            <td>"+data.uid+"</td>\n" +
+                            "            <td>"+data.username+"</td>\n" +
+                            "            <td>"+data.age+"</td>\n" +
+                            "            <td><a href='javascript:;' onclick='UserEdit("+data.uid+",\""+data.username+"\","+data.age+")'>编辑</a> | " +
+                            "<a href='javascript:;' onclick='UserDelete("+data.uid+")'>删除</a> </td>" +
+                            "        </tr>")
+                    }
+                }
+            }
+            dialog.hide()
+        })
+    }
+</script>
+</body>
+</html>
