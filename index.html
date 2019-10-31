@@ -7,17 +7,20 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>golang用户管理示例</title>
     <style>
-        #user-box{
+        #user-box {
             max-width: 600px;
             margin: 0 auto;
         }
-        table{
+
+        table {
             text-align: center;
             border: 1px solid #000;
         }
-        th{
+
+        th {
             width: 150px;
         }
+
         .btn {
             display: inline-block;
             padding: 6px 12px;
@@ -40,21 +43,25 @@
             border-radius: 4px;
             text-decoration: none;
         }
+
         .btn-success {
             color: #fff;
             background-color: #5cb85c;
             border-color: #4cae4c;
         }
+
         .btn-primary {
             color: #fff;
             background-color: #337ab7;
             border-color: #2e6da4;
         }
+
         .btn-danger {
             color: #fff;
             background-color: #d9534f;
             border-color: #d43f3a;
         }
+
         .btn-sm {
             padding: 5px 10px;
             font-size: 12px;
@@ -105,70 +112,77 @@
     var username = $("#username");
     var age = $("#age");
 
+    var host = "http://localhost:8080"
+
     // 初始化数据
     UserList();
 
     function UserSubmit() {
-        var url = "http://localhost:8080/UserEdit";
+        var url = host + "/UserEdit";
         var uidVal = uid.val();
-        if (uidVal=="") {
-            url = "http://localhost:8080/UserAdd"
+        if (uidVal == "") {
+            url = "/UserAdd"
         }
-        $.get(url,{
-            uid:uid.val(),
-            username:username.val(),
-            age:age.val()
-        },function (e) {
+        $.get(url, {
+            uid: uid.val(),
+            username: username.val(),
+            age: age.val()
+        }, function (e) {
             console.log(e);
-            if (e.code!=200) {
+            if (e.code != 200) {
                 alert("失败")
             }
             // dialog.hide()
             window.location.reload()
         })
     }
+
     function UserAdd() {
         dialogInit()
         dialog.show()
     }
-    function UserEdit(uidParam,usernameParam,ageParam) {
+
+    function UserEdit(uidParam, usernameParam, ageParam) {
         dialogInit()
         dialog.show()
         uid.val(uidParam)
         username.val(usernameParam)
         age.val(ageParam)
     }
+
     function UserDelete(uidParam) {
-        if (confirm("确定删除???")==false) {
+        if (confirm("确定删除???") == false) {
             return false
         }
-        var url = "http://localhost:8080/UserDelete"
-        $.get(url,{uid:uidParam},function (e) {
-            if (e.code!=200) {
+        var url = host + "/UserDelete"
+        $.get(url, {uid: uidParam}, function (e) {
+            if (e.code != 200) {
                 alert("删除失败")
             }
             // dialog.hide()
             window.location.reload()
         })
     }
+
     function dialogInit() {
         uid.val("")
         username.val("")
         age.val("")
     }
+
     function UserList() {
-        var url = "http://localhost:8080/UserList"
-        $.get(url,{},function (e) {
-            if (e.code==200) {
-                if (e.data.length>0) {
-                    for(var i in e.data) {
+        var url = host + "/UserList"
+        $.get(url, {}, function (e) {
+            if (e.code == 200) {
+                if (e.data.length > 0) {
+                    for (var i in e.data) {
                         var data = e.data[i]
                         $("table").append("<tr>\n" +
-                            "            <td>"+data.uid+"</td>\n" +
-                            "            <td>"+data.username+"</td>\n" +
-                            "            <td>"+data.age+"</td>\n" +
-                            "            <td><a href='javascript:;' class='btn btn-primary btn-sm' onclick='UserEdit("+data.uid+",\""+data.username+"\","+data.age+")'>编辑</a> | " +
-                            "<a href='javascript:;' class='btn btn-danger btn-sm' onclick='UserDelete("+data.uid+")'>删除</a> </td>" +
+                            "            <td>" + data.uid + "</td>\n" +
+                            "            <td>" + data.username + "</td>\n" +
+                            "            <td>" + data.age + "</td>\n" +
+                            "            <td><a href='javascript:;' class='btn btn-primary btn-sm' onclick='UserEdit(" + data.uid + ",\"" + data.username + "\"," + data.age + ")'>编辑</a> | " +
+                            "<a href='javascript:;' class='btn btn-danger btn-sm' onclick='UserDelete(" + data.uid + ")'>删除</a> </td>" +
                             "        </tr>")
                     }
                 }
