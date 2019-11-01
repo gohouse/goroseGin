@@ -1,4 +1,4 @@
-# 半小时快速入门golang完成简单的web用户管理功能(示例代码)
+# 半小时快速上手golang web编程之用户的增删改查(示例代码)
 博客教程页面: https://segmentfault.com/a/1190000020871866
 
 ## 说明
@@ -18,5 +18,5 @@ go mod tidy
 go run main.go
 ```
 
-2.访问 http://localhost:8080/html ,就可以完成用户的增删改查操作了,效果图  
+2.访问 [http://localhost:8080/html](http://localhost:8080/html) ,就可以完成用户的增删改查操作了,效果图  
 ![gorose-gin.png](https://i.loli.net/2019/10/31/B7wkU8XYS6OIRdH.jpg)
