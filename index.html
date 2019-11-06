@@ -62,11 +62,39 @@
             border-color: #d43f3a;
         }
 
+        .btn-default {
+            color: #333;
+            background-color: #fff;
+            border-color: #ccc;
+        }
+
         .btn-sm {
             padding: 5px 10px;
             font-size: 12px;
             line-height: 1.5;
             border-radius: 3px;
+        }
+
+        dialog {
+            min-width: 300px;
+            border: 1px dashed #000;
+            border-radius: 1rem;
+            z-index: 11;
+        }
+        dialog input{
+            width: 100%;
+            height: 1.5rem;
+            border-radius: 4px;
+        }
+        #cover{
+            width: 100%;
+            height: 100%;
+            background-color: dimgray;
+            display: none;
+            z-index: 10;
+            position: absolute;
+            top:0;
+            opacity:0.3;
         }
     </style>
 </head>
@@ -74,7 +102,9 @@
 <center><h1>欢迎来到golang入门用户管理api服务系统</h1></center>
 <hr>
 <div id="user-box">
-    <button onclick="UserAdd()" class="btn btn-primary btn-sm">新增</button>
+    <p>
+        <button onclick="UserAdd()" class="btn btn-primary btn-sm">新增</button>
+    </p>
     <table>
         <tr>
             <th>uid</th>
@@ -84,7 +114,7 @@
         </tr>
     </table>
 </div>
-
+<div id="cover"></div>
 <div id="modal">
     <!-- 模态框 -->
     <dialog>
@@ -101,8 +131,10 @@
             <input type="text" id="age">
         </p>
 
-        <button onclick="UserSubmit()">提交</button>
-        <button onclick="dialog.hide()">关闭</button>
+        <p style="float: right">
+            <button class="btn btn-default" onclick="dialogHide()">关闭</button>
+            <button class="btn btn-success" onclick="UserSubmit()">提交</button>
+        </p>
     </dialog>
 </div>
 <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
@@ -120,14 +152,24 @@
 
     function UserSubmit() {
         var url = host + "/UserEdit";
+        // 获取form表单信息
         var uidVal = uid.val();
+        var usernameVal = username.val()
+        var ageVal = age.val()
+
         if (uidVal == "") {
             url = "/UserAdd"
         }
+        if (usernameVal=="" || ageVal=="") {
+            alert("请输入信息")
+            username.focus()
+            return false
+        }
+
         $.get(url, {
-            uid: uid.val(),
-            username: username.val(),
-            age: age.val()
+            uid: uidVal,
+            username: usernameVal,
+            age: ageVal
         }, function (e) {
             console.log(e);
             if (e.code != 200) {
@@ -140,12 +182,12 @@
 
     function UserAdd() {
         dialogInit()
-        dialog.show()
+        dialogShow()
     }
 
     function UserEdit(uidParam, usernameParam, ageParam) {
         dialogInit()
-        dialog.show()
+        dialogShow()
         uid.val(uidParam)
         username.val(usernameParam)
         age.val(ageParam)
@@ -169,6 +211,16 @@
         uid.val("")
         username.val("")
         age.val("")
+    }
+    
+    function dialogShow() {
+        $("#cover").show()
+        dialog.show()
+    }
+
+    function dialogHide() {
+        $("#cover").hide()
+        dialog.close()
     }
 
     function UserList() {
