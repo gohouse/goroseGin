@@ -144,13 +144,18 @@ func BootGin() {
 	// logger and recovery (crash-free) middleware
 	router := gin.Default()
 
-//	router.GET("/", func(c *gin.Context) {
-//		c.Header("Content-Type", "text/html; charset=utf-8")
-//		c.String(http.StatusOK,
-//			`<br><br><center>
-//<h1>欢迎来到golang入门用户管理api服务系统</h1>
-//</center>`)
-//	})
+	router.GET("/", func(c *gin.Context) {
+		c.Header("Content-Type", "text/html; charset=utf-8")
+		c.String(http.StatusOK,
+			`<meta http-equiv="refresh" content="3;URL=/html"><br><br>
+<center>
+<h1>欢迎来到半小时快速上手golang web编程之用户的增删改查</h1>
+</center>
+<br><br><br><br>
+<center>
+<h2 style="color:red">3s后将展示操作界面</h2>
+</center>`)
+	})
 	router.Use(Cors())
 	router.GET("/UserAdd", UserAdd)
 	router.GET("/UserList", UserList)
