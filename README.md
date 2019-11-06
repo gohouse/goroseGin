@@ -1,5 +1,6 @@
 # 半小时快速上手golang web编程之用户的增删改查(示例代码)
-博客教程页面: https://segmentfault.com/a/1190000020871866
+博客教程页面: https://segmentfault.com/a/1190000020871866  
+在线体验地址: [http://gorose-gin.fizzday.net:8080/](http://gorose-gin.fizzday.net:8080/)  
 
 ## 说明
 本实例快速实现一个用户的增删改查, 采用前后端分离模式, 后端采用`gorose orm` + `gin`框架完成api的开发, 前端使用`原生html+jquery+ajax`交互数据. 
